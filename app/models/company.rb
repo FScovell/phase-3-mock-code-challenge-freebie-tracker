@@ -2,22 +2,12 @@ class Company < ActiveRecord::Base
     has_many :freebies
     has_many :devs, through: :freebies
 
-    def freebies
-        binding.pry
-        self.freebie.all
-    end
-
-    def devs
-        binding.pry
-        self.devs.all
-    end
-
-    def self.give_freebie
+    def give_freebie(dev, item_name, value)
+        Freebie.create(item_name: item_name, value: value, dev: dev, company: self)
         binding.pry
     end
 
     def self.oldest_company
-        binding.pry
-        self.maximum(:founding_year)
+        self.all.maximum(:founding_year)
     end
 end

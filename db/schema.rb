@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_09_172839) do
+ActiveRecord::Schema.define(version: 2022_02_09_161201) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
@@ -24,10 +24,10 @@ ActiveRecord::Schema.define(version: 2022_02_09_172839) do
   create_table "freebies", force: :cascade do |t|
     t.string "item_name"
     t.integer "value"
-    t.integer "dev"
-    t.integer "company"
-    t.index ["company"], name: "index_freebies_on_company"
-    t.index ["dev"], name: "index_freebies_on_dev"
+    t.integer "dev_id"
+    t.integer "company_id"
+    t.index ["company_id"], name: "index_freebies_on_company_id"
+    t.index ["dev_id"], name: "index_freebies_on_dev_id"
   end
 
 end

@@ -2,23 +2,19 @@ class Dev < ActiveRecord::Base
     has_many :freebies
     has_many :companies, through: :freebies
 
-    def freebies
+
+    def received_one?(item)
         binding.pry
-        self.freebies.all
+        self.freebies.any?{|freebie| freebie.item_name == item}
     end
 
-    def companies
-        binding.pry
-        self.companies.all
+    def give_away(dev, freebie)
+        if freebie.dev_id == self.id 
+             freebie.dev_id = dev.id
+             freebie.save
+        else
+            nil
+        end
     end
 
-    def self.received_one
-        binding.pry
-        
-    end
-
-    def self.give_away
-        binding.pry
-
-    end
 end
